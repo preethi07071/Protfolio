@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nadimidoddy Preethi — Java Developer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy-deep:   #070C1A;
+    --navy:        #0D1838;
+    --navy-panel:  #131F45;
+    --blue:        #2F6BFF;
+    --blue-bright: #5B8CFF;
+    --cyan:        #5CE1F5;
+    --teal:        #3EE0C8;
+    --gold:        #F0B95F;
+    --violet:      #9B8CFF;
+    --text-main:   #F5F8FF;
+    --text-mute:   #A7B7E0;
+    --line:        rgba(160,190,255,0.18);
+  }
+
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+  html{
+    scroll-behavior:smooth;
+  }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -5%, rgba(47,107,255,0.28), transparent 60%),
+      radial-gradient(ellipse 800px 700px at 100% 20%, rgba(92,225,245,0.14), transparent 55%),
+      radial-gradient(ellipse 700px 600px at 20% 90%, rgba(62,224,200,0.12), transparent 55%),
+      var(--navy-deep);
+    color:var(--text-main);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+
+  ::selection{
+    background:var(--blue);
+    color:#fff;
+  }
+
+  h1,h2,h3,.mono{
+    font-family:'Space Grotesk',sans-serif;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--cyan);
+  }
+
+  a{
+    color:inherit;
+    text-decoration:none;
+  }
+
+  /* ---------- NAV ---------- */
+
+  nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6vw;
+    backdrop-filter:blur(10px);
+    background:rgba(6,11,24,0.55);
+    border-bottom:1px solid var(--line);
+  }
+
+  .logo{
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:0.02em;
+  }
+
+  .logo span{
+    color:var(--cyan);
+  }
+
+  .nav-links{
+    display:flex;
+    gap:34px;
+    font-size:14px;
+    color:var(--text-mute);
+  }
+
+  .nav-links a{
+    transition:color .25s;
+  }
+
+  .nav-links a:hover{
+    color:var(--cyan);
+  }
+
+  .nav-links a:focus-visible,
+  a:focus-visible{
+    outline:2px solid var(--cyan);
+    outline-offset:3px;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero{
+    position:relative;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    padding:0 6vw;
+    overflow:hidden;
+  }
+
+  #hero-canvas{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    opacity:0.9;
+  }
+
+  .hero-content{
+    position:relative;
+    z-index:2;
+    max-width:640px;
+  }
+
+  .hero-content .eyebrow{
+    margin-bottom:18px;
+    display:block;
+  }
+
+  .hero h1{
+    font-size:clamp(40px,6vw,72px);
+    line-height:1.05;
+    font-weight:700;
+    margin-bottom:20px;
+  }
+
+  .hero h1 .accent{
+    background:linear-gradient(
+      90deg,
+      var(--blue-bright),
+      var(--cyan),
+      var(--teal),
+      var(--violet),
+      var(--gold),
+      var(--cyan),
+      var(--blue-bright)
+    );
+    background-size:300% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:gradient-scroll 6s linear infinite;
+  }
+
+  @keyframes gradient-scroll{
+    0%{
+      background-position:0% 50%;
+    }
+
+    100%{
+      background-position:300% 50%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero h1 .accent,
+    .gradient-heading{
+      animation:none;
+    }
+  }
+
+  .hero p{
+    font-size:17px;
+    color:var(--text-mute);
+    max-width:480px;
+    margin-bottom:34px;
+    line-height:1.7;
+  }
+
+  .btn-row{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    padding:14px 28px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:600;
+    transition:all .25s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .btn-primary{
+    background:linear-gradient(90deg,var(--blue),var(--blue-bright));
+    color:#fff;
+    box-shadow:0 4px 24px rgba(47,107,255,0.35);
+  }
+
+  .btn-primary:hover{
+    box-shadow:0 8px 32px rgba(91,140,255,0.55);
+    transform:translateY(-2px);
+  }
+
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--text-main);
+    background:rgba(255,255,255,0.03);
+  }
+
+  .btn-ghost:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+    background:rgba(92,225,245,0.06);
+  }
+
+  .btn:focus-visible{
+    outline:2px solid var(--cyan);
+    outline-offset:3px;
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:36px;
+    left:6vw;
+    z-index:2;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--text-mute);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .scroll-cue::before{
+    content:'';
+    width:1px;
+    height:34px;
+    background:linear-gradient(var(--cyan),transparent);
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+
+  section{
+    padding:130px 6vw;
+    position:relative;
+  }
+
+  .section-head{
+    margin-bottom:64px;
+    max-width:640px;
+  }
+
+  .section-head .eyebrow{
+    margin-bottom:14px;
+  }
+
+  .section-head h2{
+    font-size:clamp(28px,3.4vw,42px);
+    font-weight:600;
+  }
+
+  .gradient-heading{
+    background:linear-gradient(
+      90deg,
+      var(--blue-bright),
+      var(--cyan),
+      var(--teal),
+      var(--violet),
+      var(--gold),
+      var(--cyan),
+      var(--blue-bright)
+    );
+    background-size:300% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:gradient-scroll 8s linear infinite;
+    display:inline-block;
+  }
+
+  /* ---------- ABOUT ---------- */
+
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:70px;
+    align-items:start;
+  }
+
+  .about-text p{
+    color:var(--text-mute);
+    line-height:1.85;
+    font-size:16px;
+    margin-bottom:20px;
+  }
+
+  .about-text strong{
+    color:var(--text-main);
+    font-weight:600;
+  }
+
+  .stat-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+
+  .stat{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .stat .num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:30px;
+    font-weight:600;
+    color:var(--cyan);
+  }
+
+  .stat:nth-child(2) .num{
+    color:var(--teal);
+  }
+
+  .stat:nth-child(3) .num{
+    color:var(--violet);
+  }
+
+  .stat:nth-child(4) .num{
+    color:var(--gold);
+  }
+
+  .stat .label{
+    font-size:13px;
+    color:var(--text-mute);
+    text-align:right;
+    max-width:180px;
+  }
+
+  /* ---------- EDUCATION ---------- */
+
+  .edu-list{
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid var(--line);
+  }
+
+  .edu-item{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:30px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .edu-date{
+    font-size:13px;
+    color:var(--cyan);
+    letter-spacing:0.03em;
+  }
+
+  .edu-body h3{
+    font-size:19px;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+
+  .edu-role{
+    font-size:14.5px;
+    color:var(--text-main);
+    opacity:0.85;
+    margin-bottom:4px;
+  }
+
+  .edu-loc{
+    font-size:13px;
+    color:var(--text-mute);
+  }
+
+  .edu-item:nth-child(2) .edu-date{
+    color:var(--teal);
+  }
+
+  .edu-item:nth-child(3) .edu-date{
+    color:var(--violet);
+  }
+
+  @media(max-width:600px){
+    .edu-item{
+      grid-template-columns:1fr;
+      gap:8px;
+    }
+  }
+
+  /* ---------- SKILLS ---------- */
+
+  .skills-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .skill-tag{
+    padding:11px 20px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    font-size:14px;
+    color:var(--text-mute);
+    font-family:'JetBrains Mono',monospace;
+    transition:all .25s;
+  }
+
+  .skill-tag:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+    transform:translateY(-2px);
+  }
+
+  .skill-tag:nth-child(3n+2):hover{
+    border-color:var(--teal);
+    color:var(--teal);
+  }
+
+  .skill-tag:nth-child(3n+3):hover{
+    border-color:var(--violet);
+    color:var(--violet);
+  }
+
+  /* ---------- PROJECTS ---------- */
+
+  .project-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:26px;
+    max-width:760px;
+  }
+
+  .card{
+    background:var(--navy-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:34px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .35s,border-color .35s;
+  }
+
+  .card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(76,201,240,0.45);
+  }
+
+  .card::after{
+    content:'';
+    position:absolute;
+    top:-40%;
+    right:-40%;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:radial-gradient(
+      circle,
+      rgba(61,127,255,0.18),
+      transparent 70%
+    );
+    pointer-events:none;
+  }
+
+  .card-index{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--cyan);
+    margin-bottom:18px;
+  }
+
+  .card h3{
+    font-size:21px;
+    font-weight:600;
+    margin-bottom:12px;
+  }
+
+  .card p{
+    color:var(--text-mute);
+    font-size:14.5px;
+    line-height:1.7;
+    margin-bottom:20px;
+  }
+
+  .tag-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+  }
+
+  .tag-row span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--text-mute);
+    border:1px solid var(--line);
+    padding:4px 10px;
+    border-radius:4px;
+  }
+
+  .card-link{
+    font-size:13px;
+    font-weight:600;
+    color:var(--cyan);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .card-link:hover{
+    gap:10px;
+  }
+
+  .card-link-row{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+
+  .card-link.live{
+    color:var(--teal);
+  }
+
+  /* ---------- CONTACT ---------- */
+
+  .contact-panel{
+    background:var(--navy-panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:70px 6vw;
+    text-align:center;
+  }
+
+  .contact-panel h2{
+    font-size:clamp(28px,4vw,46px);
+    margin-bottom:18px;
+  }
+
+  .contact-panel p{
+    color:var(--text-mute);
+    margin-bottom:36px;
+    font-size:16px;
+  }
+
+  footer{
+    padding:30px 6vw;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--text-mute);
+    border-top:1px solid var(--line);
+  }
+
+  @media(max-width:860px){
+    .nav-links{
+      display:none;
+    }
+
+    .about-grid{
+      grid-template-columns:1fr;
+    }
+
+    .project-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{
+      scroll-behavior:auto;
+    }
+
+    #hero-canvas{
+      display:none;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============ NAV ============ -->
+
+<nav>
+  <div class="logo">preethi<span>.dev</span></div>
+
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <a href="#contact" class="btn btn-ghost" style="padding:10px 22px;">
+    Let's talk
+  </a>
+</nav>
+
+
+<!-- ============ HERO ============ -->
+
+<section class="hero">
+
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-content">
+
+    <span class="eyebrow">// Java Developer</span>
+
+    <h1>
+      Building practical,
+      <span class="accent">reliable</span>
+      software solutions.
+    </h1>
+
+    <p>
+      I'm a B.Tech Computer Science student specializing in Artificial
+      Intelligence and Machine Learning, passionate about software
+      development, problem-solving, and building practical technology
+      solutions.
+    </p>
+
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-primary">
+        View projects
+      </a>
+
+      <a href="#contact" class="btn btn-ghost">
+        Get in touch
+      </a>
+    </div>
+
+  </div>
+
+  <div class="scroll-cue">
+    SCROLL
+  </div>
+
+</section>
+
+
+<!-- ============ ABOUT ============ -->
+
+<section id="about">
+
+  <div class="section-head">
+
+    <span class="eyebrow">01 — About</span>
+
+    <h2 class="gradient-heading">
+      A short introduction
+    </h2>
+
+  </div>
+
+  <div class="about-grid">
+
+    <div class="about-text">
+
+      <p>
+        I'm a
+        <strong>
+          B.Tech Computer Science student specializing in Artificial
+          Intelligence and Machine Learning
+        </strong>
+        at Mohan Babu University, Tirupati. I'm passionate about software
+        development, problem-solving, and building practical technology
+        solutions.
+      </p>
+
+      <p>
+        I have a strong interest in
+        <strong>
+          Java, Python, web development, databases, and artificial intelligence
+        </strong>.
+        I enjoy applying my technical knowledge to real-world projects while
+        continuously improving my programming, problem-solving, and software
+        development skills.
+      </p>
+
+    </div>
+
+    <div class="stat-list">
+
+      <div class="stat">
+        <span class="num">2027</span>
+        <span class="label">
+          Expected graduation, B.Tech CSE (AI/ML)
+        </span>
+      </div>
+
+      <div class="stat">
+        <span class="num">8.8</span>
+        <span class="label">
+          Current CGPA
+        </span>
+      </div>
+
+      <div class="stat">
+        <span class="num">2</span>
+        <span class="label">
+          ServiceNow certifications
+        </span>
+      </div>
+
+      <div class="stat">
+        <span class="num">100%</span>
+        <span class="label">
+          Secondary school achievement
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============ EDUCATION ============ -->
+
+<section id="education">
+
+  <div class="section-head">
+
+    <span class="eyebrow">02 — Background</span>
+
+    <h2 class="gradient-heading">
+      Education
+    </h2>
+
+  </div>
+
+  <div class="edu-list">
+
+    <div class="edu-item">
+
+      <div class="edu-date mono">
+        2023 — May 2027
+      </div>
+
+      <div class="edu-body">
+
+        <h3>
+          Mohan Babu University
+        </h3>
+
+        <p class="edu-role">
+          B.Tech in Computer Science Engineering — AI & ML
+        </p>
+
+        <p class="edu-role">
+          CGPA: 8.8
+        </p>
+
+        <p class="edu-loc">
+          Tirupati, Andhra Pradesh
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="edu-item">
+
+      <div class="edu-date mono">
+        2021 — 2023
+      </div>
+
+      <div class="edu-body">
+
+        <h3>
+          Narayana Junior College
+        </h3>
+
+        <p class="edu-role">
+          Intermediate — Percentage: 94.5%
+        </p>
+
+        <p class="edu-loc">
+          Vijayawada, Andhra Pradesh
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="edu-item">
+
+      <div class="edu-date mono">
+        2011 — 2021
+      </div>
+
+      <div class="edu-body">
+
+        <h3>
+          Navodaya E.M High School
+        </h3>
+
+        <p class="edu-role">
+          Secondary School — Percentage: 100%
+        </p>
+
+        <p class="edu-loc">
+          Vijayawada, Andhra Pradesh
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============ SKILLS ============ -->
+
+<section id="skills">
+
+  <div class="section-head">
+
+    <span class="eyebrow">03 — Toolkit</span>
+
+    <h2 class="gradient-heading">
+      Technologies I work with
+    </h2>
+
+  </div>
+
+  <div class="skills-wrap">
+
+    <span class="skill-tag">
+      Java
+    </span>
+
+    <span class="skill-tag">
+      Python
+    </span>
+
+    <span class="skill-tag">
+      HTML
+    </span>
+
+    <span class="skill-tag">
+      CSS
+    </span>
+
+    <span class="skill-tag">
+      JavaScript
+    </span>
+
+    <span class="skill-tag">
+      SQL
+    </span>
+
+    <span class="skill-tag">
+      MySQL
+    </span>
+
+    <span class="skill-tag">
+      Machine Learning
+    </span>
+
+    <span class="skill-tag">
+      Deep Learning
+    </span>
+
+    <span class="skill-tag">
+      Git
+    </span>
+
+    <span class="skill-tag">
+      GitHub
+    </span>
+
+    <span class="skill-tag">
+      VS Code
+    </span>
+
+    <span class="skill-tag">
+      Google Colab
+    </span>
+
+    <span class="skill-tag">
+      Data Structures & Algorithms
+    </span>
+
+    <span class="skill-tag">
+      OOP
+    </span>
+
+    <span class="skill-tag">
+      DBMS
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- ============ ACHIEVEMENTS ============ -->
+
+<section id="achievements">
+
+  <div class="section-head">
+
+    <span class="eyebrow">04 — Recognition</span>
+
+    <h2 class="gradient-heading">
+      Achievements
+    </h2>
+
+  </div>
+
+  <div class="stat-list" style="max-width:760px;">
+
+    <div class="stat">
+
+      <span
+        class="label"
+        style="text-align:left;max-width:100%;"
+      >
+
+        <strong style="color:var(--gold);">
+          ServiceNow Certified System Administrator (CSA)
+        </strong>
+
+        — Earned certification demonstrating knowledge of ServiceNow
+        platform administration.
+
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span
+        class="label"
+        style="text-align:left;max-width:100%;"
+      >
+
+        <strong style="color:var(--gold);">
+          ServiceNow Certified Application Developer (CAD)
+        </strong>
+
+        — Certified in developing and customizing applications on the
+        ServiceNow platform.
+
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span
+        class="label"
+        style="text-align:left;max-width:100%;"
+      >
+
+        <strong style="color:var(--gold);">
+          Technical Project Development
+        </strong>
+
+        — Developed academic and personal projects using Java, Python,
+        Web Technologies, and Machine Learning.
+
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span
+        class="label"
+        style="text-align:left;max-width:100%;"
+      >
+
+        <strong style="color:var(--gold);">
+          Coding & Problem Solving
+        </strong>
+
+        — Regularly practice Data Structures and Algorithms to strengthen
+        programming and problem-solving skills.
+
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span
+        class="label"
+        style="text-align:left;max-width:100%;"
+      >
+
+        <strong style="color:var(--gold);">
+          Continuous Learning
+        </strong>
+
+        — Actively explore emerging technologies in Artificial Intelligence,
+        Machine Learning, and Software Development.
+
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============ PROJECTS ============ -->
+
+<section id="projects">
+
+  <div class="section-head">
+
+    <span class="eyebrow">05 — Selected Work</span>
+
+    <h2 class="gradient-heading">
+      Projects
+    </h2>
+
+  </div>
+
+  <div class="project-grid">
+
+    <div class="card">
+
+      <div class="card-index">
+        01
+      </div>
+
+      <h3>
+        Car Rental Booking System
+      </h3>
+
+      <p>
+        A web-based Car Rental System designed to simplify the process of
+        renting and managing vehicles online. Users can browse available
+        cars, view vehicle details, select rental dates, and book vehicles
+        conveniently. The system helps manage customer information, vehicle
+        availability, bookings, and rental records efficiently.
+      </p>
+
+      <div class="tag-row">
+
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+
+      </div>
+
+      <div class="card-link-row">
+
+        <a
+          href="https://github.com/preethi07071"
+          class="card-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Code →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============ CONTACT ============ -->
+
+<section id="contact">
+
+  <div class="contact-panel">
+
+    <span class="eyebrow">
+      06 — Contact
+    </span>
+
+    <h2
+      class="gradient-heading"
+      style="margin-top:18px;"
+    >
+      Let's build something together.
+    </h2>
+
+    <p>
+      Open to internships, entry-level opportunities, and collaborative
+      projects.
+    </p>
+
+
+    <form
+      id="contact-form"
+      style="
+        max-width:480px;
+        margin:0 auto 30px;
+        text-align:left;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+      "
+    >
+
+      <input
+        type="text"
+        id="cf-name"
+        placeholder="Your name"
+        required
+        style="
+          padding:14px 16px;
+          border-radius:6px;
+          border:1px solid var(--line);
+          background:var(--navy);
+          color:var(--text-main);
+          font-family:'Inter',sans-serif;
+        "
+      >
+
+      <input
+        type="email"
+        id="cf-email"
+        placeholder="Your email"
+        required
+        style="
+          padding:14px 16px;
+          border-radius:6px;
+          border:1px solid var(--line);
+          background:var(--navy);
+          color:var(--text-main);
+          font-family:'Inter',sans-serif;
+        "
+      >
+
+      <textarea
+        id="cf-message"
+        placeholder="Your message"
+        required
+        rows="4"
+        style="
+          padding:14px 16px;
+          border-radius:6px;
+          border:1px solid var(--line);
+          background:var(--navy);
+          color:var(--text-main);
+          font-family:'Inter',sans-serif;
+          resize:vertical;
+        "
+      ></textarea>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="
+          align-self:center;
+          border:none;
+          cursor:pointer;
+        "
+      >
+        Send message
+      </button>
+
+      <p
+        id="cf-status"
+        style="
+          text-align:center;
+          font-size:13px;
+          color:var(--text-mute);
+        "
+      ></p>
+
+    </form>
+
+
+    <div
+      class="btn-row"
+      style="justify-content:center;"
+    >
+
+      <a
+        href="mailto:nadimidoddipreethi@gmail.com"
+        class="btn btn-ghost"
+      >
+        nadimidoddipreethi@gmail.com
+      </a>
+
+      <a
+        href="tel:+919052773148"
+        class="btn btn-ghost"
+      >
+        +91 90527 73148
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/nadimidoddy-preethi-b596b0344/"
+        class="btn btn-ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <a
+        href="https://github.com/preethi07071"
+        class="btn btn-ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============ CONTACT FORM SCRIPT ============ -->
+
+<script>
+
+document
+  .getElementById('contact-form')
+  .addEventListener('submit', async function(e){
+
+    e.preventDefault();
+
+    const status =
+      document.getElementById('cf-status');
+
+    const name =
+      document.getElementById('cf-name').value;
+
+    const email =
+      document.getElementById('cf-email').value;
+
+    const message =
+      document.getElementById('cf-message').value;
+
+    status.textContent = 'Sending...';
+
+    try {
+
+      const res = await fetch('/api/contact', {
+
+        method:'POST',
+
+        headers:{
+          'Content-Type':'application/json'
+        },
+
+        body:JSON.stringify({
+          name,
+          email,
+          message
+        })
+
+      });
+
+      const data = await res.json();
+
+      if(res.ok){
+
+        status.textContent =
+          'Message sent — thank you!';
+
+        document
+          .getElementById('contact-form')
+          .reset();
+
+      }else{
+
+        status.textContent =
+          data.error ||
+          'Something went wrong. Please try again.';
+
+      }
+
+    }catch(err){
+
+      status.textContent =
+        'Could not reach the server. Please try again later.';
+
+    }
+
+});
+
+</script>
+
+
+<!-- ============ FOOTER ============ -->
+
+<footer>
+
+  <span>
+    © 2026 Nadimidoddy Preethi
+  </span>
+
+  <span>
+    Built with care.
+  </span>
+
+</footer>
+
+
+<!-- ============ THREE.JS ============ -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+
+(function(){
+
+  const canvas =
+    document.getElementById('hero-canvas');
+
+  if(
+    !canvas ||
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+  ) return;
+
+
+  const hero =
+    document.querySelector('.hero');
+
+  let W = hero.clientWidth;
+  let H = hero.clientHeight;
+
+
+  const renderer =
+    new THREE.WebGLRenderer({
+      canvas,
+      alpha:true,
+      antialias:true
+    });
+
+  renderer.setSize(W,H);
+
+  renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio,2)
+  );
+
+
+  const scene =
+    new THREE.Scene();
+
+
+  const camera =
+    new THREE.PerspectiveCamera(
+      60,
+      W/H,
+      0.1,
+      1000
+    );
+
+  camera.position.z = 55;
+
+
+  const COUNT = 260;
+
+  const positions =
+    new Float32Array(COUNT * 3);
+
+  const velocities = [];
+
+
+  for(let i=0;i<COUNT;i++){
+
+    positions[i*3] =
+      (Math.random()-0.5) * 100;
+
+    positions[i*3+1] =
+      (Math.random()-0.5) * 70;
+
+    positions[i*3+2] =
+      (Math.random()-0.5) * 60;
+
+
+    velocities.push({
+
+      x:(Math.random()-0.5)*0.04,
+
+      y:(Math.random()-0.5)*0.04,
+
+      z:(Math.random()-0.5)*0.04
+
+    });
+
+  }
+
+
+  const geometry =
+    new THREE.BufferGeometry();
+
+  geometry.setAttribute(
+    'position',
+    new THREE.BufferAttribute(
+      positions,
+      3
+    )
+  );
+
+
+  const material =
+    new THREE.PointsMaterial({
+
+      color:0x4CC9F0,
+
+      size:0.9,
+
+      transparent:true,
+
+      opacity:0.85
+
+    });
+
+
+  const points =
+    new THREE.Points(
+      geometry,
+      material
+    );
+
+  scene.add(points);
+
+
+  const lineGeometry =
+    new THREE.BufferGeometry();
+
+
+  const lineMaterial =
+    new THREE.LineBasicMaterial({
+
+      color:0x3D7FFF,
+
+      transparent:true,
+
+      opacity:0.18
+
+    });
+
+
+  const lineMesh =
+    new THREE.LineSegments(
+      lineGeometry,
+      lineMaterial
+    );
+
+  scene.add(lineMesh);
+
+
+  const MAX_DIST = 14;
+
+
+  function updateLines(){
+
+    const pos =
+      geometry.attributes.position.array;
+
+    const linePositions = [];
+
+
+    for(let i=0;i<COUNT;i++){
+
+      for(let j=i+1;j<COUNT;j++){
+
+        const dx =
+          pos[i*3] -
+          pos[j*3];
+
+        const dy =
+          pos[i*3+1] -
+          pos[j*3+1];
+
+        const dz =
+          pos[i*3+2] -
+          pos[j*3+2];
+
+
+        const dist =
+          Math.sqrt(
+            dx*dx +
+            dy*dy +
+            dz*dz
+          );
+
+
+        if(dist < MAX_DIST){
+
+          linePositions.push(
+            pos[i*3],
+            pos[i*3+1],
+            pos[i*3+2]
+          );
+
+          linePositions.push(
+            pos[j*3],
+            pos[j*3+1],
+            pos[j*3+2]
+          );
+
+        }
+
+      }
+
+    }
+
+
+    lineGeometry.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute(
+        linePositions,
+        3
+      )
+    );
+
+  }
+
+
+  let frame = 0;
+
+  let mouseX = 0;
+  let mouseY = 0;
+
+
+  window.addEventListener(
+    'mousemove',
+    (e)=>{
+
+      mouseX =
+        (
+          e.clientX /
+          window.innerWidth -
+          0.5
+        ) * 2;
+
+      mouseY =
+        (
+          e.clientY /
+          window.innerHeight -
+          0.5
+        ) * 2;
+
+    }
+  );
+
+
+  function animate(){
+
+    requestAnimationFrame(animate);
+
+
+    const pos =
+      geometry.attributes.position.array;
+
+
+    for(let i=0;i<COUNT;i++){
+
+      pos[i*3] +=
+        velocities[i].x;
+
+      pos[i*3+1] +=
+        velocities[i].y;
+
+      pos[i*3+2] +=
+        velocities[i].z;
+
+
+      if(
+        Math.abs(pos[i*3]) > 50
+      ){
+        velocities[i].x *= -1;
+      }
+
+
+      if(
+        Math.abs(pos[i*3+1]) > 35
+      ){
+        velocities[i].y *= -1;
+      }
+
+
+      if(
+        Math.abs(pos[i*3+2]) > 30
+      ){
+        velocities[i].z *= -1;
+      }
+
+    }
+
+
+    geometry.attributes
+      .position.needsUpdate = true;
+
+
+    frame++;
+
+
+    if(frame % 4 === 0){
+      updateLines();
+    }
+
+
+    camera.position.x +=
+      (
+        mouseX * 8 -
+        camera.position.x
+      ) * 0.03;
+
+
+    camera.position.y +=
+      (
+        -mouseY * 6 -
+        camera.position.y
+      ) * 0.03;
+
+
+    camera.lookAt(scene.position);
+
+
+    points.rotation.y += 0.0007;
+
+    lineMesh.rotation.y += 0.0007;
+
+
+    renderer.render(
+      scene,
+      camera
+    );
+
+  }
+
+
+  animate();
+
+
+  window.addEventListener(
+    'resize',
+    ()=>{
+
+      W = hero.clientWidth;
+      H = hero.clientHeight;
+
+      camera.aspect = W/H;
+
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(W,H);
+
+    }
+  );
+
+})();
+
+</script>
+
+</body>
+</html>
